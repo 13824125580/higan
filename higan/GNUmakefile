@@ -2,7 +2,7 @@ target := higan
 binary := application
 build := performance
 openmp := true
-flags += -I. -I..
+flags += -I. -I.. -g3 -O0
 
 nall.path := ../nall
 include $(nall.path)/GNUmakefile
