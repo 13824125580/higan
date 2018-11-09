@@ -1,0 +1,7 @@
+gba.hpp:1:9: warning: #pragma once in main file
+ #pragma once
+         ^~~~
+gba.hpp:6:33: fatal error: emulator/emulator.hpp: No such file or directory
+ #include <emulator/emulator.hpp>
+                                 ^
+compilation terminated.

@@ -8,7 +8,7 @@
 #include <nall/cipher/chacha20.hpp>
 
 #if defined(PLATFORM_LINUX)
-  #include <sys/random.h>
+  //#include <sys/random.h>
 #elif defined(PLATFORM_WINDOWS)
   #include <wincrypt.h>
 #endif
@@ -38,7 +38,7 @@ protected:
     #if defined(PLATFORM_BSD) || defined(PLATFORM_MACOS)
     for(uint n : range(8)) seed = seed << 32 | (uint32_t)arc4random();
     #elif defined(PLATFORM_LINUX)
-    getrandom(&seed, 32, GRND_NONBLOCK);
+    //getrandom(&seed, 32, GRND_NONBLOCK);
     #elif defined(PLATFORM_WINDOWS)
     HCRYPTPROV provider;
     if(CryptAcquireContext(&provider, nullptr, MS_STRONG_PROV, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)) {

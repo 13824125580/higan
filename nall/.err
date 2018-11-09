@@ -1,0 +1,7 @@
+random.hpp:1:9: warning: #pragma once in main file
+ #pragma once
+         ^~~~
+random.hpp:3:31: fatal error: nall/arithmetic.hpp: No such file or directory
+ #include <nall/arithmetic.hpp>
+                               ^
+compilation terminated.

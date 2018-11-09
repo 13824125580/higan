@@ -1,4 +1,4 @@
-target := bsnes
+target := higan
 binary := application
 build := performance
 openmp := true
@@ -47,7 +47,7 @@ ifeq ($(target),higan)
 endif
 
 ifeq ($(target),bsnes)
-  cores := sfc gb
+  cores := sfc gb gba
 endif
 
 ifneq ($(filter $(cores),fc),)
