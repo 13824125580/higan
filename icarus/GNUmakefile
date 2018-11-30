@@ -1,6 +1,6 @@
 name := icarus
-build := performance
-flags += -I..
+build := debug
+flags += -I.. -g -O0
 
 nall.path := ../nall
 include $(nall.path)/GNUmakefile

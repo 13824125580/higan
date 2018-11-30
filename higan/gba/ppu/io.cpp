@@ -107,6 +107,7 @@ auto PPU::writeIO(uint32 addr, uint8 data) -> void {
 
   //DISPCNT
   case 0x0400'0000:
+    printf("%s line %d, data = 0x%x\n", __func__, __LINE__, data);
     Background::IO::mode  = data.bits(0,2);
     io.gameBoyColorMode   = data.bit (3);
     Background::IO::frame = data.bit (4);
@@ -115,6 +116,7 @@ auto PPU::writeIO(uint32 addr, uint8 data) -> void {
     io.forceBlank         = data.bit (7);
     return;
   case 0x0400'0001:
+    printf("%s line %d, data = 0x%x\n", __func__, __LINE__, data);
     bg0.io.enable     = data.bit(0);
     bg1.io.enable     = data.bit(1);
     bg2.io.enable     = data.bit(2);

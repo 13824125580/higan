@@ -1,7 +1,6 @@
 #include <emulator/emulator.hpp>
 
 namespace Emulator {
-
 #include "sprite.cpp"
 Video video;
 

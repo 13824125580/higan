@@ -1,0 +1,125 @@
+thread.hpp:1:9: warning: #pragma once in main file
+ #pragma once
+         ^~~~
+thread.hpp:7:8: error: expected identifier before ‘:’ token
+   enum : uintmax { Second = (uintmax)-1 >> 1 };
+        ^
+thread.hpp:7:10: error: ‘uintmax’ was not declared in this scope
+   enum : uintmax { Second = (uintmax)-1 >> 1 };
+          ^~~~~~~
+thread.hpp:7:10: error: expected ‘;’ at end of member declaration
+thread.hpp:7:18: error: expected unqualified-id before ‘{’ token
+   enum : uintmax { Second = (uintmax)-1 >> 1 };
+                  ^
+thread.hpp:19:18: error: ‘cothread_t’ has not been declared
+   auto setHandle(cothread_t handle) -> void {
+                  ^~~~~~~~~~
+thread.hpp:28:18: error: ‘uintmax’ has not been declared
+   auto setScalar(uintmax scalar) -> void {
+                  ^~~~~~~
+thread.hpp:32:17: error: ‘uintmax’ has not been declared
+   auto setClock(uintmax clock) -> void {
+                 ^~~~~~~
+thread.hpp:43:20: error: ‘uint’ has not been declared
+   inline auto step(uint clocks) -> void {
+                    ^~~~
+thread.hpp:48:18: error: ‘serializer’ has not been declared
+   auto serialize(serializer& s) -> void {
+                  ^~~~~~~~~~
+thread.hpp:55:3: error: ‘cothread_t’ does not name a type
+   cothread_t _handle = nullptr;
+   ^~~~~~~~~~
+thread.hpp:56:3: error: ‘uintmax’ does not name a type
+   uintmax _frequency = 0;
+   ^~~~~~~
+thread.hpp:57:3: error: ‘uintmax’ does not name a type
+   uintmax _scalar = 0;
+   ^~~~~~~
+thread.hpp:58:3: error: ‘uintmax’ does not name a type
+   uintmax _clock = 0;
+   ^~~~~~~
+thread.hpp: In destructor ‘virtual Emulator::Thread::~Thread()’:
+thread.hpp:10:8: error: ‘_handle’ was not declared in this scope
+     if(_handle) co_delete(_handle);
+        ^~~~~~~
+thread.hpp:10:34: error: ‘co_delete’ was not declared in this scope
+     if(_handle) co_delete(_handle);
+                                  ^
+thread.hpp: In member function ‘auto Emulator::Thread::active() const’:
+thread.hpp:13:49: error: ‘co_active’ was not declared in this scope
+   inline auto active() const { return co_active() == _handle; }
+                                                 ^
+thread.hpp:13:54: error: ‘_handle’ was not declared in this scope
+   inline auto active() const { return co_active() == _handle; }
+                                                      ^~~~~~~
+thread.hpp: In member function ‘auto Emulator::Thread::handle() const’:
+thread.hpp:14:39: error: ‘_handle’ was not declared in this scope
+   inline auto handle() const { return _handle; }
+                                       ^~~~~~~
+thread.hpp: In member function ‘auto Emulator::Thread::frequency() const’:
+thread.hpp:15:42: error: ‘_frequency’ was not declared in this scope
+   inline auto frequency() const { return _frequency; }
+                                          ^~~~~~~~~~
+thread.hpp: In member function ‘auto Emulator::Thread::scalar() const’:
+thread.hpp:16:39: error: ‘_scalar’ was not declared in this scope
+   inline auto scalar() const { return _scalar; }
+                                       ^~~~~~~
+thread.hpp: In member function ‘auto Emulator::Thread::clock() const’:
+thread.hpp:17:80: error: ‘_clock’ was not declared in this scope
+   inline auto clock() const { printf("get clock line %d.\n", __LINE__); return _clock; }
+                                                                                ^~~~~~
+thread.hpp: In member function ‘void Emulator::Thread::setHandle(int)’:
+thread.hpp:20:5: error: ‘_handle’ was not declared in this scope
+     _handle = handle;
+     ^~~~~~~
+thread.hpp: In member function ‘void Emulator::Thread::setFrequency(double)’:
+thread.hpp:24:5: error: ‘_frequency’ was not declared in this scope
+     _frequency = frequency + 0.5;
+     ^~~~~~~~~~
+thread.hpp:25:5: error: ‘_scalar’ was not declared in this scope
+     _scalar = Second / _frequency;
+     ^~~~~~~
+thread.hpp:25:15: error: ‘Second’ was not declared in this scope
+     _scalar = Second / _frequency;
+               ^~~~~~
+thread.hpp: In member function ‘void Emulator::Thread::setScalar(int)’:
+thread.hpp:29:5: error: ‘_scalar’ was not declared in this scope
+     _scalar = scalar;
+     ^~~~~~~
+thread.hpp: In member function ‘void Emulator::Thread::setClock(int)’:
+thread.hpp:33:5: error: ‘_clock’ was not declared in this scope
+     _clock = clock;
+     ^~~~~~
+thread.hpp: In member function ‘void Emulator::Thread::create(void (*)(), double)’:
+thread.hpp:37:8: error: ‘_handle’ was not declared in this scope
+     if(_handle) co_delete(_handle);
+        ^~~~~~~
+thread.hpp:37:34: error: ‘co_delete’ was not declared in this scope
+     if(_handle) co_delete(_handle);
+                                  ^
+thread.hpp:38:5: error: ‘_handle’ was not declared in this scope
+     _handle = co_create(64 * 1024 * sizeof(void*), entrypoint);
+     ^~~~~~~
+thread.hpp:38:62: error: ‘co_create’ was not declared in this scope
+     _handle = co_create(64 * 1024 * sizeof(void*), entrypoint);
+                                                              ^
+thread.hpp: In member function ‘void Emulator::Thread::step(int)’:
+thread.hpp:44:5: error: ‘_clock’ was not declared in this scope
+     _clock += _scalar * clocks;
+     ^~~~~~
+thread.hpp:44:15: error: ‘_scalar’ was not declared in this scope
+     _clock += _scalar * clocks;
+               ^~~~~~~
+thread.hpp: In member function ‘void Emulator::Thread::serialize(int&)’:
+thread.hpp:49:7: error: request for member ‘integer’ in ‘s’, which is of non-class type ‘int’
+     s.integer(_frequency);
+       ^~~~~~~
+thread.hpp:49:15: error: ‘_frequency’ was not declared in this scope
+     s.integer(_frequency);
+               ^~~~~~~~~~
+thread.hpp:51:7: error: request for member ‘integer’ in ‘s’, which is of non-class type ‘int’
+     s.integer(_clock);
+       ^~~~~~~
+thread.hpp:51:15: error: ‘_clock’ was not declared in this scope
+     s.integer(_clock);
+               ^~~~~~

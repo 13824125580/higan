@@ -1,0 +1,30 @@
+keypad.cpp:1:6: error: ‘CPU’ has not been declared
+ auto CPU::Keypad::run() -> void {
+      ^~~
+keypad.cpp: In function ‘void run()’:
+keypad.cpp:3:16: error: ‘uint’ does not name a type
+   static const uint lookup[] = {5, 4, 8, 9, 3, 2, 0, 1, 7, 6};
+                ^~~~
+keypad.cpp:5:7: error: ‘enable’ was not declared in this scope
+   if(!enable) return;
+       ^~~~~~
+keypad.cpp:7:15: error: ‘condition’ was not declared in this scope
+   bool test = condition;  //0 = OR, 1 = AND
+               ^~~~~~~~~
+keypad.cpp:8:24: error: ‘range’ was not declared in this scope
+   for(auto n : range(10)) {
+                        ^
+keypad.cpp:10:18: error: ‘platform’ was not declared in this scope
+     bool input = platform->inputPoll(0, 0, lookup[n]);
+                  ^~~~~~~~
+keypad.cpp:10:44: error: ‘lookup’ was not declared in this scope
+     bool input = platform->inputPoll(0, 0, lookup[n]);
+                                            ^~~~~~
+keypad.cpp:14:12: error: ‘cpu’ was not declared in this scope
+   if(test) cpu.irq.flag |= CPU::Interrupt::Keypad;
+            ^~~
+keypad.cpp:14:28: error: ‘CPU’ has not been declared
+   if(test) cpu.irq.flag |= CPU::Interrupt::Keypad;
+                            ^~~
+cc1plus: fatal error: ./: No such file or directory
+compilation terminated.

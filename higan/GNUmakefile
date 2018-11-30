@@ -1,7 +1,7 @@
 target := higan
 binary := application
-build := performance
-openmp := true
+build := debug
+openmp := false
 flags += -I. -I.. -g3 -O0
 
 nall.path := ../nall

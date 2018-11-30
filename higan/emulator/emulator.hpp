@@ -1,5 +1,4 @@
 #pragma once
-
 #include <nall/platform.hpp>
 #include <nall/adaptive-array.hpp>
 #include <nall/any.hpp>

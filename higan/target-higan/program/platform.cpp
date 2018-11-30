@@ -87,7 +87,7 @@ auto Program::videoRefresh(uint displayID, const uint32* data, uint pitch, uint 
   current = chrono::timestamp();
   if(current != previous) {
     previous = current;
-    statusInfo = {frameCounter, " FPS"};
+    statusInfo = {frameCounter, " FPSSS"};
     frameCounter = 0;
   }
 }

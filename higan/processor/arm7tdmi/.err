@@ -1,0 +1,268 @@
+instruction.cpp:1:6: error: ‘ARM7TDMI’ has not been declared
+ auto ARM7TDMI::fetch() -> void {
+      ^~~~~~~~
+instruction.cpp: In function ‘void fetch()’:
+instruction.cpp:2:3: error: ‘pipeline’ was not declared in this scope
+   pipeline.execute = pipeline.decode;
+   ^~~~~~~~
+instruction.cpp:4:32: error: ‘cpsr’ was not declared in this scope
+   pipeline.decode.thumb = cpsr().t;
+                                ^
+instruction.cpp:6:3: error: ‘uint’ was not declared in this scope
+   uint sequential = Sequential;
+   ^~~~
+instruction.cpp:9:5: error: ‘sequential’ was not declared in this scope
+     sequential = Nonsequential;
+     ^~~~~~~~~~
+instruction.cpp:9:18: error: ‘Nonsequential’ was not declared in this scope
+     sequential = Nonsequential;
+                  ^~~~~~~~~~~~~
+instruction.cpp:12:8: error: expected ‘;’ before ‘mask’
+   uint mask = !cpsr().t ? 3 : 1;
+        ^~~~
+instruction.cpp:13:8: error: expected ‘;’ before ‘size’
+   uint size = !cpsr().t ? Word : Half;
+        ^~~~
+instruction.cpp:15:7: error: ‘r’ was not declared in this scope
+   r(15).data += size >> 3;
+       ^
+instruction.cpp:15:17: error: ‘size’ was not declared in this scope
+   r(15).data += size >> 3;
+                 ^~~~
+instruction.cpp:16:37: error: ‘mask’ was not declared in this scope
+   pipeline.fetch.address = r(15) & ~mask;
+                                     ^~~~
+instruction.cpp:17:37: error: ‘Prefetch’ was not declared in this scope
+   pipeline.fetch.instruction = read(Prefetch | size | sequential, pipeline.fetch.address);
+                                     ^~~~~~~~
+instruction.cpp:17:55: error: ‘sequential’ was not declared in this scope
+   pipeline.fetch.instruction = read(Prefetch | size | sequential, pipeline.fetch.address);
+                                                       ^~~~~~~~~~
+instruction.cpp:17:89: error: ‘read’ was not declared in this scope
+   pipeline.fetch.instruction = read(Prefetch | size | sequential, pipeline.fetch.address);
+                                                                                         ^
+instruction.cpp: At global scope:
+instruction.cpp:20:6: error: ‘ARM7TDMI’ has not been declared
+ auto ARM7TDMI::instruction() -> void {
+      ^~~~~~~~
+instruction.cpp: In function ‘void instruction()’:
+instruction.cpp:21:3: error: ‘uint’ was not declared in this scope
+   uint mask = !cpsr().t ? 3 : 1;
+   ^~~~
+instruction.cpp:22:8: error: expected ‘;’ before ‘size’
+   uint size = !cpsr().t ? Word : Half;
+        ^~~~
+instruction.cpp:24:6: error: ‘pipeline’ was not declared in this scope
+   if(pipeline.reload) {
+      ^~~~~~~~
+instruction.cpp:26:9: error: ‘r’ was not declared in this scope
+     r(15).data &= ~mask;
+         ^
+instruction.cpp:26:20: error: ‘mask’ was not declared in this scope
+     r(15).data &= ~mask;
+                    ^~~~
+instruction.cpp:28:39: error: ‘Prefetch’ was not declared in this scope
+     pipeline.fetch.instruction = read(Prefetch | size | Nonsequential, pipeline.fetch.address);
+                                       ^~~~~~~~
+instruction.cpp:28:50: error: ‘size’ was not declared in this scope
+     pipeline.fetch.instruction = read(Prefetch | size | Nonsequential, pipeline.fetch.address);
+                                                  ^~~~
+instruction.cpp:28:57: error: ‘Nonsequential’ was not declared in this scope
+     pipeline.fetch.instruction = read(Prefetch | size | Nonsequential, pipeline.fetch.address);
+                                                         ^~~~~~~~~~~~~
+instruction.cpp:28:94: error: ‘read’ was not declared in this scope
+     pipeline.fetch.instruction = read(Prefetch | size | Nonsequential, pipeline.fetch.address);
+                                                                                              ^
+instruction.cpp:33:6: error: ‘irq’ was not declared in this scope
+   if(irq && !cpsr().i) {
+      ^~~
+instruction.cpp:33:19: error: ‘cpsr’ was not declared in this scope
+   if(irq && !cpsr().i) {
+                   ^
+instruction.cpp:34:15: error: ‘PSR’ has not been declared
+     exception(PSR::IRQ, 0x18);
+               ^~~
+instruction.cpp:34:29: error: ‘exception’ was not declared in this scope
+     exception(PSR::IRQ, 0x18);
+                             ^
+instruction.cpp:35:8: error: ‘pipeline’ was not declared in this scope
+     if(pipeline.execute.thumb) r(14).data += 2;
+        ^~~~~~~~
+instruction.cpp:35:36: error: ‘r’ was not declared in this scope
+     if(pipeline.execute.thumb) r(14).data += 2;
+                                    ^
+instruction.cpp:39:3: error: ‘opcode’ was not declared in this scope
+   opcode = pipeline.execute.instruction;
+   ^~~~~~
+instruction.cpp:39:12: error: ‘pipeline’ was not declared in this scope
+   opcode = pipeline.execute.instruction;
+            ^~~~~~~~
+instruction.cpp:41:31: error: ‘TST’ was not declared in this scope
+     if(!TST(opcode.bits(28,31))) return;
+                               ^
+instruction.cpp:42:5: error: ‘uint12’ was not declared in this scope
+     uint12 index = (opcode & 0x0ff00000) >> 16 | (opcode & 0x000000f0) >> 4;
+     ^~~~~~
+instruction.cpp:43:5: error: ‘armInstruction’ was not declared in this scope
+     armInstruction[index](opcode);
+     ^~~~~~~~~~~~~~
+instruction.cpp:43:20: error: ‘index’ was not declared in this scope
+     armInstruction[index](opcode);
+                    ^~~~~
+instruction.cpp:45:5: error: ‘thumbInstruction’ was not declared in this scope
+     thumbInstruction[(uint16)opcode]();
+     ^~~~~~~~~~~~~~~~
+instruction.cpp:45:23: error: ‘uint16’ was not declared in this scope
+     thumbInstruction[(uint16)opcode]();
+                       ^~~~~~
+instruction.cpp:45:30: error: expected ‘]’ before ‘opcode’
+     thumbInstruction[(uint16)opcode]();
+                              ^~~~~~
+instruction.cpp: At global scope:
+instruction.cpp:49:6: error: ‘ARM7TDMI’ has not been declared
+ auto ARM7TDMI::exception(uint mode, uint32 address) -> void {
+      ^~~~~~~~
+instruction.cpp:49:26: error: ‘uint’ was not declared in this scope
+ auto ARM7TDMI::exception(uint mode, uint32 address) -> void {
+                          ^~~~
+instruction.cpp:49:37: error: ‘uint32’ was not declared in this scope
+ auto ARM7TDMI::exception(uint mode, uint32 address) -> void {
+                                     ^~~~~~
+instruction.cpp:49:51: error: expression list treated as compound expression in initializer [-fpermissive]
+ auto ARM7TDMI::exception(uint mode, uint32 address) -> void {
+                                                   ^
+instruction.cpp:49:53: error: expected ‘,’ or ‘;’ before ‘->’ token
+ auto ARM7TDMI::exception(uint mode, uint32 address) -> void {
+                                                     ^~
+instruction.cpp:60:6: error: ‘ARM7TDMI’ has not been declared
+ auto ARM7TDMI::armInitialize() -> void {
+      ^~~~~~~~
+instruction.cpp: In function ‘void armInitialize()’:
+instruction.cpp:74:7: error: ‘uint4’ was not declared in this scope
+   for(uint4 displacementLo : range(16))
+       ^~~~~
+instruction.cpp:85:3: error: expected primary-expression before ‘{’ token
+   {
+   ^
+instruction.cpp:85:3: error: expected ‘;’ before ‘{’ token
+instruction.cpp:85:3: error: expected primary-expression before ‘{’ token
+instruction.cpp:85:3: error: expected ‘)’ before ‘{’ token
+instruction.cpp:69:5: error: ‘integral_constant’ is not a member of ‘std’
+     std::integral_constant<uint32_t, bit::test(s)>::value
+     ^
+instruction.cpp:86:19: note: in expansion of macro ‘pattern’
+     auto opcode = pattern(".... 0001 0010 ---- ---- ---- 0001 ????");
+                   ^~~~~~~
+instruction.cpp:69:28: error: ‘uint32_t’ was not declared in this scope
+     std::integral_constant<uint32_t, bit::test(s)>::value
+                            ^
+instruction.cpp:86:19: note: in expansion of macro ‘pattern’
+     auto opcode = pattern(".... 0001 0010 ---- ---- ---- 0001 ????");
+                   ^~~~~~~
+instruction.cpp:62:5: error: ‘uint’ was not declared in this scope
+     uint index = (id & 0x0ff00000) >> 16 | (id & 0x000000f0) >> 4; \
+     ^
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp:63:13: error: ‘armInstruction’ was not declared in this scope
+     assert(!armInstruction[index]); \
+             ^
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp:63:28: error: ‘index’ was not declared in this scope
+     assert(!armInstruction[index]); \
+                            ^
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp:63:34: error: ‘assert’ was not declared in this scope
+     assert(!armInstruction[index]); \
+                                  ^
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp:64:33: error: ‘uint32’ has not been declared
+     armInstruction[index] = [&](uint32 opcode) { return armInstruction##name(arguments); }; \
+                                 ^
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp: In lambda function:
+instruction.cpp:84:12: error: request for member ‘bits’ in ‘opcode’, which is of non-class type ‘int’
+     opcode.bits( 0, 3)   /* m */
+            ^
+instruction.cpp:64:78: note: in expansion of macro ‘arguments’
+     armInstruction[index] = [&](uint32 opcode) { return armInstruction##name(arguments); }; \
+                                                                              ^~~~~~~~~
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp:64:87: error: ‘armInstructionBranchExchangeRegister’ was not declared in this scope
+     armInstruction[index] = [&](uint32 opcode) { return armInstruction##name(arguments); }; \
+                                                                                       ^
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp: In function ‘void armInitialize()’:
+instruction.cpp:65:5: error: ‘armDisassemble’ was not declared in this scope
+     armDisassemble[index] = [&](uint32 opcode) { return armDisassemble##name(arguments); }; \
+     ^
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp:65:33: error: ‘uint32’ has not been declared
+     armDisassemble[index] = [&](uint32 opcode) { return armDisassemble##name(arguments); }; \
+                                 ^
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp: In lambda function:
+instruction.cpp:84:12: error: request for member ‘bits’ in ‘opcode’, which is of non-class type ‘int’
+     opcode.bits( 0, 3)   /* m */
+            ^
+instruction.cpp:65:78: note: in expansion of macro ‘arguments’
+     armDisassemble[index] = [&](uint32 opcode) { return armDisassemble##name(arguments); }; \
+                                                                              ^~~~~~~~~
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp:65:87: error: ‘armDisassembleBranchExchangeRegister’ was not declared in this scope
+     armDisassemble[index] = [&](uint32 opcode) { return armDisassemble##name(arguments); }; \
+                                                                                       ^
+instruction.cpp:87:5: note: in expansion of macro ‘bind’
+     bind(opcode, BranchExchangeRegister);
+     ^~~~
+instruction.cpp: In function ‘void armInitialize()’:
+instruction.cpp:98:7: error: ‘uint4’ was not declared in this scope
+   for(uint4 shiftHi : range(16))
+       ^~~~~
+instruction.cpp:115:3: error: expected primary-expression before ‘for’
+   for(uint2 type : range(4))
+   ^~~
+instruction.cpp:115:3: error: expected ‘;’ before ‘for’
+instruction.cpp:115:3: error: expected primary-expression before ‘for’
+instruction.cpp:115:3: error: expected ‘)’ before ‘for’
+instruction.cpp:115:7: error: ‘uint2’ was not declared in this scope
+   for(uint2 type : range(4))
+       ^~~~~
+instruction.cpp:133:3: error: expected primary-expression before ‘for’
+   for(uint2 type : range(4))
+   ^~~
+instruction.cpp:133:3: error: expected ‘;’ before ‘for’
+instruction.cpp:133:3: error: expected primary-expression before ‘for’
+instruction.cpp:133:3: error: expected ‘)’ before ‘for’
+instruction.cpp:133:13: error: expected ‘;’ before ‘type’
+   for(uint2 type : range(4))
+             ^~~~
+instruction.cpp:538:1: error: expected primary-expression at end of input
+ }
+ ^
+instruction.cpp:538:1: error: expected ‘;’ at end of input
+instruction.cpp:538:1: error: expected primary-expression at end of input
+instruction.cpp:538:1: error: expected ‘)’ at end of input
+instruction.cpp:538:1: error: expected statement at end of input
+instruction.cpp:538:1: error: expected ‘}’ at end of input
+cc1plus: fatal error: ./: No such file or directory
+compilation terminated.

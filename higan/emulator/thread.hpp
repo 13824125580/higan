@@ -1,7 +1,8 @@
 #pragma once
-
+#include <stdio.h>
 namespace Emulator {
 
+#define printf(...)  do {  } while(0)
 struct Thread {
   enum : uintmax { Second = (uintmax)-1 >> 1 };
 
@@ -13,7 +14,7 @@ struct Thread {
   inline auto handle() const { return _handle; }
   inline auto frequency() const { return _frequency; }
   inline auto scalar() const { return _scalar; }
-  inline auto clock() const { return _clock; }
+  inline auto clock() const { printf("get clock line %d.\n", __LINE__); return _clock; }
 
   auto setHandle(cothread_t handle) -> void {
     _handle = handle;
@@ -41,11 +42,12 @@ struct Thread {
 
   inline auto step(uint clocks) -> void {
     _clock += _scalar * clocks;
+    //_clock += clocks;
   }
 
   auto serialize(serializer& s) -> void {
     s.integer(_frequency);
-    s.integer(_scalar);
+    //s.integer(_scalar);
     s.integer(_clock);
   }
 

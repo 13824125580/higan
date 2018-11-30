@@ -151,12 +151,12 @@ auto CPU::readIO(uint32 addr) -> uint8 {
   case 0x0400'015b: return 0;
 
   //IE
-  case 0x0400'0200: return irq.enable.byte(0);
-  case 0x0400'0201: return irq.enable.byte(1);
+  case 0x0400'0200: {return irq.enable.byte(0);}
+  case 0x0400'0201: {return irq.enable.byte(1);}
 
   //IF
-  case 0x0400'0202: return irq.flag.byte(0);
-  case 0x0400'0203: return irq.flag.byte(1);
+  case 0x0400'0202: {return irq.flag.byte(0);}
+  case 0x0400'0203: {return irq.flag.byte(1);}
 
   //WAITCNT
   case 0x0400'0204: return (
@@ -317,7 +317,8 @@ auto CPU::writeIO(uint32 addr, uint8 data) -> void {
   case 0x0400'0133:
     keypad.flag[8]   = data.bit(0);
     keypad.flag[9]   = data.bit(1);
-    keypad.enable    = data.bit(6);
+    //keypad.enable    = data.bit(6);
+    keypad.enable    = 1;
     keypad.condition = data.bit(7);
     return;
 
@@ -371,12 +372,12 @@ auto CPU::writeIO(uint32 addr, uint8 data) -> void {
   case 0x0400'0159: return;
 
   //IE
-  case 0x0400'0200: irq.enable.byte(0) = data; return;
-  case 0x0400'0201: irq.enable.byte(1) = data; return;
+  case 0x0400'0200: {printf("irq set enable byte 0\n"); irq.enable.byte(0) = data; return;}
+  case 0x0400'0201: {printf("irq set enable byte 1\n"); irq.enable.byte(1) = data; return;}
 
   //IF
-  case 0x0400'0202: irq.flag.byte(0) = irq.flag.byte(0) & ~data; return;
-  case 0x0400'0203: irq.flag.byte(1) = irq.flag.byte(1) & ~data; return;
+  case 0x0400'0202: {printf("irq set flag byte 0\n"); irq.flag.byte(0) = irq.flag.byte(0) & ~data; return;} 
+  case 0x0400'0203: {printf("irq set flag byte 1\n"); irq.flag.byte(1) = irq.flag.byte(1) & ~data; return;}
 
   //WAITCNT
   case 0x0400'0204:
@@ -396,7 +397,7 @@ auto CPU::writeIO(uint32 addr, uint8 data) -> void {
     return;
 
   //IME
-  case 0x0400'0208: irq.ime = data.bit(0); return;
+  case 0x0400'0208: {printf("irq set ime bit 0\n"); irq.ime = data.bit(0); return;}
   case 0x0400'0209: return;
 
   //POSTFLG, HALTCNT
